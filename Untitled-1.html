@@ -5,32 +5,80 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>A Basic HTML5 Template</title>
 </head>
 
 <body>
-    Stuff
-    <script>
-        
-        
-        function computerPlay() {
-            let x = Math.floor(Math.random() * 3 + 1);
-            if (x===1) {
-                return "rock";
-            }
-            
-            else if ( x===2) {
-                return "paper";
-            }
+    You are fighting against a computer: <br>
+    choose either rock, paper, or scissors.
+    <button id="rock"> Rock </button>
+    <button id="paper"> Paper </button>
+    <button id="scissors"> Scissors </button>
+    <div id="player">Player Score: </div>
+    <div id="cpu">CPU Score: </div>
+    <div id="result">Result: </div>
 
-            else if (x===3){
-                return "scissors";
-            }
-        }
-        
+    <script>
         let win;
         let wincount = 0;
         let losecount = 0;
+        let playerSelection;
+        let computerSelection;
+        
+
+        const rock = document.querySelector ('#rock');
+        rock.addEventListener('click', () => {
+            let playerSelection = "rock";
+            let computerSelection = computerPlay();
+            const result = document.getElementById("result");
+            result.textContent = `Result: ${playRound(playerSelection, computerSelection)}`;
+            const wins = document.getElementById("player");
+            wins.textContent = `Player Score: ${wincount}`;
+            const losses = document.getElementById("cpu");
+            losses.textContent = `CPU Score: ${losecount}`;
+            if(wincount === 5) {
+            alert("The player has won!");
+            }
+            if(losecount === 5) {
+                alert("The computer has won!");
+            }
+        });
+
+        const paper = document.querySelector ('#paper');
+        paper.addEventListener('click', () => {
+            let playerSelection = "paper";
+            let computerSelection = computerPlay();
+            const result = document.getElementById("result");
+            result.textContent = `Result: ${playRound(playerSelection, computerSelection)}`;
+            const wins = document.getElementById("player");
+            wins.textContent = `Player Score: ${wincount}`;
+            const losses = document.getElementById("cpu");
+            losses.textContent = `CPU Score: ${losecount}`;
+            if(wincount === 5) {
+            alert("The player has won!");
+            }
+            if(losecount === 5) {
+                alert("The computer has won!");
+            }
+        });
+
+        const scissors = document.querySelector ('#scissors');
+        scissors.addEventListener('click', () => {
+            let playerSelection = "scissors";
+            let computerSelection = computerPlay();
+            const result = document.getElementById("result");
+            result.textContent = `Result: ${playRound(playerSelection, computerSelection)}`;
+            const wins = document.getElementById("player");
+            wins.textContent = `Player Score: ${wincount}`;
+            const losses = document.getElementById("cpu");
+            losses.textContent = `CPU Score: ${losecount}`;
+            if(wincount === 5) {
+            alert("The player has won!");
+            }
+            if(losecount === 5) {
+                alert("The computer has won!");
+            }
+        });
+        
         function playRound(playerSelection, computerSelection){
             if (playerSelection === computerSelection) {
                 return("The computer also chose " + playerSelection + "! The round is a tie!")
@@ -68,30 +116,23 @@
 
         }
 
-        
-        function game() {
-            for(let i = 1; i<= 5; i++ ) {
-                let playerSelection = prompt("Rock, paper, or scissors?").toLowerCase();
-                computerPlay();
-                playRound()
-                let computerSelection = computerPlay();
-                console.log(playRound(playerSelection, computerSelection));
-                
+        function computerPlay() {
+            let x = Math.floor(Math.random() * 3 + 1);
+            if (x===1) {
+                return "rock";
+            }
+            
+            else if ( x===2) {
+                return "paper";
             }
 
-            if(wincount > losecount){
-                alert("Congratulations, you win the game!")
-            }
-
-            else if(wincount < losecount) {
-                alert("Congratulations, your a loser!")
-            }
-            else {
-                alert("Congratulations, you tied with a computer!")
+            else if (x===3){
+                return "scissors";
             }
         }
+
+
         
-        game();
     </script>
 </body>
 
